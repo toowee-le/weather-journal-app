@@ -14,15 +14,9 @@ function performAction(e) {
         const journalEntry = document.getElementById('feelings').value;
         getWeather(baseURL, city, apiKey)
         .then(data => {
-            postData('/addEntry', {
-                city: data.name,
-                country: data.sys.country,
-                temp: data.main.temp,
-                weather: data.weather[0].main,
-                description: data.weather[0].description,
-                icon: data.weather[0].icon,
-                mood: journalEntry
-            });
+            console.log(data);
+            postData('/addEntry', { data });
+            //updateUI();
         });
     };
     clearResults();
@@ -32,7 +26,13 @@ const getWeather = async (baseURL, city, key) => {
     const response = await fetch(baseURL+city+key);
     const data = await response.json();
     try {
-        return data;
+        return {
+            city: data.name,
+            country: data.sys.country,
+            temp: data.main.temp,
+            description: data.weather[0].description,
+            icon: data.weather[0].icon
+        };
     } catch (error) {
         console.log("Error", error);
     };
@@ -56,6 +56,18 @@ const postData = async (url = '', data = {}) => {
 };
 
 // Update UI
+// const updateUI = async () => {
+//     const request = await fetch('/all');
+//     try {
+//         const data = await request.json();
+//         const { city, country, temp, description, mood } = data[0];
+//         console.log(data[0]);
+//         document.querySelector('.name').textContent = `${city}, ${country}`;
+//     } catch (error) {
+//         console.log("Error", error);
+//     }
+// }
+
 function clearResults() {
     const form = document.forms["journalForm"];
     form.reset();
