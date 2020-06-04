@@ -15,23 +15,19 @@ app.use(express.static('public'));
 
 const projectData = [];
 
-app.post('/addEntry', addEntry);
+app.get('/all', getData);
 
-function addEntry(req, res) {
-    newEntry = {
-        city: req.body.city,
-        country: req.body.country,
-        temp: req.body.temp,
-        weather: req.body.weather,
-        description: req.body.description,
-        icon: req.body.icon,
-        mood: req.body.mood
-    };
-
-    projectData.push(newEntry);
+function getData(req, res) {
     res.send(projectData);
     console.log(projectData);
-};
+}
+
+app.post('/addEntry', (req, res) => {
+    const entry = req.body;
+    projectData.push(entry);
+    res.send(projectData);
+    console.log(projectData);
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server is running on localhost: ${port}`));
