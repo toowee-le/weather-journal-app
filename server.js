@@ -13,9 +13,25 @@ app.use(cors());
 // Initialise the main project folder
 app.use(express.static('public'));
 
-app.post('/addEntry', (req, res) => {
-    console.log(req.body);
-});
+const projectData = [];
+
+app.post('/addEntry', addEntry);
+
+function addEntry(req, res) {
+    newEntry = {
+        city: req.body.city,
+        country: req.body.country,
+        temp: req.body.temp,
+        weather: req.body.weather,
+        description: req.body.description,
+        icon: req.body.icon,
+        mood: req.body.mood
+    };
+
+    projectData.push(newEntry);
+    res.send(projectData);
+    console.log(projectData);
+};
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server is running on localhost: ${port}`));
