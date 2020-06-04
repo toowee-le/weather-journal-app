@@ -15,6 +15,7 @@ function performAction(e) {
         getWeather(baseURL, city, apiKey)
         .then(data => console.log(data));
     };
+    clearResults();
 };
  
 const getWeather = async (baseURL, city, key) => {
@@ -42,4 +43,10 @@ const postData = async (url = '', data = {}) => {
     } catch (error) {
         console.log("Error:", error);
     };
+};
+
+// Update UI
+function clearResults() {
+    const form = document.forms["journalForm"];
+    form.reset();
 };
