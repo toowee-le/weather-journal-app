@@ -77,6 +77,7 @@ const updateUI = async () => {
             // Formula to convert Celcius to Fahrenheit
             let fahrenheit = (celsius * 1.8) + 32;
 
+            document.querySelector('.journal-entry').textContent = `Journal Entry #${i+1}`;
             document.querySelector('.current-date').textContent = `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}, ${d.getFullYear()}`;
             document.querySelector('.name').textContent = `${data.city}, ${data.country}`;
             document.querySelector('.current-weather').textContent = `${data.description}`;
