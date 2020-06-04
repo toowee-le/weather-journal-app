@@ -59,6 +59,10 @@ a {
     font-size: .8rem;
 }
 
+.temp {
+    visibility: hidden;
+}
+
 #celsius,
 #fahrenheit {
     cursor: pointer;

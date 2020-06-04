@@ -69,6 +69,7 @@ const updateUI = async () => {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const cTemp = document.getElementById('celsius');
             const fTemp = document.getElementById('fahrenheit');
+            const tempSection = document.querySelector('.temp');
             let degree = document.querySelector('.degree');
 
             // Formula to convert Kelvin to Celcius
@@ -84,6 +85,7 @@ const updateUI = async () => {
             document.querySelector('.weather-icon').src = `http://openweathermap.org/img/w/${data.icon}.png`;
             document.querySelector('.mood').textContent = `${mood}`;
             degree.textContent = `${Math.floor(celsius)}`;
+            tempSection.style.visibility = 'visible';
 
             cTemp.addEventListener('click', () => {
                 degree.textContent = Math.floor(celsius);
