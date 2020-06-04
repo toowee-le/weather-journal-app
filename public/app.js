@@ -14,9 +14,9 @@ function performAction(e) {
         const journalEntry = document.getElementById('feelings').value;
         getWeather(baseURL, city, apiKey)
         .then(data => {
-            console.log(data);
-            postData('/addEntry', { data });
-            //updateUI();
+            postData('/addEntry', { data: data, mood: journalEntry });
+            console.log(journalEntry);
+            updateUI();
         });
     };
     clearResults();
@@ -56,17 +56,47 @@ const postData = async (url = '', data = {}) => {
 };
 
 // Update UI
-// const updateUI = async () => {
-//     const request = await fetch('/all');
-//     try {
-//         const data = await request.json();
-//         const { city, country, temp, description, mood } = data[0];
-//         console.log(data[0]);
-//         document.querySelector('.name').textContent = `${city}, ${country}`;
-//     } catch (error) {
-//         console.log("Error", error);
-//     }
-// }
+const updateUI = async () => {
+    const request = await fetch('/all');
+    try {
+        const allData = await request.json();
+        for(let i = 0; i < allData.length; i++) {
+            console.log(allData[i].data);
+            const data = allData[i].data;
+            const mood = allData[i].mood;
+            let d = new Date();
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const cTemp = document.getElementById('celsius');
+            const fTemp = document.getElementById('fahrenheit');
+            let degree = document.querySelector('.degree');
+
+            // Formula to convert Kelvin to Celcius
+            let celsius = data.temp - 273.15;
+
+            // Formula to convert Celcius to Fahrenheit
+            let fahrenheit = (celsius * 1.8) + 32;
+
+            document.querySelector('.current-date').textContent = `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}, ${d.getFullYear()}`;
+            document.querySelector('.name').textContent = `${data.city}, ${data.country}`;
+            document.querySelector('.current-weather').textContent = `${data.description}`;
+            document.querySelector('.weather-icon').src = `http://openweathermap.org/img/w/${data.icon}.png`;
+            document.querySelector('.mood').textContent = `${mood}`;
+            degree.textContent = `${Math.floor(celsius)}`;
+
+            cTemp.addEventListener('click', () => {
+                degree.textContent = Math.floor(celsius);
+            });
+
+            fTemp.addEventListener('click', () => {
+                degree.textContent = Math.floor(fahrenheit);
+            });
+        }
+    } catch (error) {
+        console.log("Error", error);
+        alert('City/State not found');
+    };
+};
 
 function clearResults() {
     const form = document.forms["journalForm"];

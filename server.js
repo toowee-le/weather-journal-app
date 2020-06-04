@@ -20,13 +20,12 @@ app.get('/all', getData);
 function getData(req, res) {
     res.send(projectData);
     console.log(projectData);
-}
+};
 
 app.post('/addEntry', (req, res) => {
     const entry = req.body;
     projectData.push(entry);
-    res.send(projectData);
-    console.log(projectData);
+    res.json(projectData);
 });
 
 const port = process.env.PORT || 3000;
