@@ -13,7 +13,17 @@ function performAction(e) {
         const city = document.getElementById('city').value;
         const journalEntry = document.getElementById('feelings').value;
         getWeather(baseURL, city, apiKey)
-        .then(data => console.log(data));
+        .then(data => {
+            postData('/addEntry', {
+                city: data.name,
+                country: data.sys.country,
+                temp: data.main.temp,
+                weather: data.weather[0].main,
+                description: data.weather[0].description,
+                icon: data.weather[0].icon,
+                mood: journalEntry
+            });
+        });
     };
     clearResults();
 };
