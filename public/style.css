@@ -79,7 +79,13 @@ a:hover {
 
 #celsius,
 #fahrenheit {
+    color: var(--text-color);
     cursor: pointer;
+}
+
+#celsius:hover,
+#fahrenheit:hover {
+    color: #FFF;
 }
 
 .slash {
