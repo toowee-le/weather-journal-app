@@ -8,10 +8,13 @@
 
 :root {
     --text-color: #151713;
+    --hover-color: #F6E0D6;
 }
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
+    background: #444;
     color: var(--text-color);
 }
 
@@ -22,6 +25,10 @@ h2 {
     letter-spacing: 8px;
     text-align: center;
     font-weight: 300;
+}
+
+h1 {
+    color: #FFF;
 }
 
 h2 {
@@ -36,6 +43,13 @@ h3 {
 
 a {
     text-decoration: none;
+    color: #FFF;
+    transition: .2s ease;
+}
+
+a:hover {
+    color: var(--hover-color);
+    border-bottom: 3px solid var(--hover-color);
 }
 
 .name,
@@ -89,7 +103,7 @@ a {
 .entry-input,
 .entry-output {
     border: 1px solid var(--text-color);
-    background: #FFF;
+    background: #ddb5a2;
     border-radius: 8px;
     padding: 1.5em;
 }
@@ -101,10 +115,10 @@ textarea {
     margin: 1em 0;
     padding: 12px;
     width: 100%;
-    border: none;
+    border: 1px solid var(--text-color);
     border-radius: 3px;
     outline: none;
-    background: rgb(224, 224, 224);
+    background: #FFF;
 }
 
 ::placeholder {
@@ -120,6 +134,8 @@ textarea {
 .entry-output {
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    background: #DCAE94;
+    background: -webkit-linear-gradient(top, #d0a896 , #ebc2af 2%);
 }
 
 .entry-output, 
@@ -145,10 +161,12 @@ textarea {
 
 .entry-output:before {
     transform: rotate(4deg);
+    background: #ebc2afd7;
 }
 
 .entry-output:after {
     transform: rotate(-4deg);
+    background: #f6e0d6;
 }
 
 .date,
@@ -178,15 +196,21 @@ footer {
     font-size: .8rem;
     width: 80%;
     margin: 0 auto;
+    color: #FFF;
 }
 
 /* ---- Utilities ---- */
 #generate {
     padding: 10px 25px;
-    background: rgb(224, 224, 224);
-    border: none;
+    background: #FFF;
+    border: 1px solid var(--text-color);
     border-radius: 3px;
     cursor: pointer;
+    transition: .3s all;
+}
+
+#generate:hover {
+    background: var(--hover-color);
 }
 
 /* ---- Media Query ---- */
