@@ -199,9 +199,9 @@ textarea {
 /* Footer */
 footer {
     text-align: center;
-    font-size: .8rem;
+    font-size: .7rem;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 25px;
     color: #FFF;
 }
 
