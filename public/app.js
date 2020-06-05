@@ -15,7 +15,6 @@ function performAction(e) {
         getWeather(baseURL, city, apiKey)
         .then(data => {
             postData('/addEntry', { data: data, mood: journalEntry });
-            console.log(journalEntry);
             updateUI();
         });
     };
@@ -61,7 +60,6 @@ const updateUI = async () => {
     try {
         const allData = await request.json();
         for(let i = 0; i < allData.length; i++) {
-            console.log(allData[i].data);
             const data = allData[i].data;
             const mood = allData[i].mood;
             let d = new Date();
