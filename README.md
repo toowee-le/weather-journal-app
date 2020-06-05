@@ -13,5 +13,5 @@ A weather journal app that fetches data on the current weather from the [OpenWea
 
 ## Features
 * Search for the current weather by city name
-* Submit a journal entry which displays with the current weather including: date, location and temperature
+* Submit a journal entry which displays to display on the adjacent notepad with the current weather including: date, location and temperature
 * Journal entry saved in an object on the local Express server (server.js)
