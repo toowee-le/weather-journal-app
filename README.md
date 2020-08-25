@@ -3,7 +3,7 @@
 ## Description
 Training project for the [Udacity Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011) - Project 3
 
-A weather journal app that fetches data on the current weather from the [OpenWeatherMap](https://openweathermap.org/) API by searching for a city name along. The app also allows users to add a journal entry.
+A weather journal app that fetches data on the current weather from the [OpenWeatherMap](https://openweathermap.org/) API by searching for a city name along with a feature that allows users to add a journal entry.
 
 Technologies used: HTML, CSS, JavaScript, Node.js, Express, third-party API
 
